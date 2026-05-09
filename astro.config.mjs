@@ -49,5 +49,5 @@ export default defineConfig({
       ],
     ],
   },
-  site: 'https://halqme.pages.dev',
+  site: 'https://0w0.foo',
 })
