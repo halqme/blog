@@ -10,7 +10,6 @@
     "no-unused-vars": "error",
     "no-magic-numbers": "allow",
     "sort-keys": "warn",
-    "import/order": "warn",
     "unicorn/filename-case": "warn",
     "jsx-a11y/click-events-have-key-events": "warn",
     "jsx-a11y/no-static-element-interactions": "error"
@@ -24,18 +23,11 @@
   "ignorePatterns": ["dist/", ".astro/", "node_modules/", ".cache/"],
   "settings": {
     "jsx-a11y": {
-      "polymorphicPropName": null,
       "components": {},
       "attributes": {}
     },
     "next": {
       "rootDir": []
-    },
-    "react": {
-      "formComponents": [],
-      "linkComponents": [],
-      "version": null,
-      "componentWrapperFunctions": []
     },
     "jsdoc": {
       "ignorePrivate": false,
