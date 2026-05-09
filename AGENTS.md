@@ -225,7 +225,7 @@ Schema (`src/content.config.ts`): `title`, `description`, `pubDate` (required); 
 
 ## Environment Variables
 
-- Site URL: `https://halqme.pages.dev` (in `astro.config.mjs`)
+- Site URL: `https://0w0.foo` (in `astro.config.mjs`)
 - No `.env` tracked in git
 
 ---

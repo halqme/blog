@@ -210,7 +210,7 @@ export const GET: APIRoute = async ({ params, props }) => {
                 },
                 {
                   props: {
-                    children: 'halqme.pages.dev',
+                    children: '0w0.foo',
                     style: {
                       color: '#999999',
                       fontSize: '24px',

@@ -41,7 +41,7 @@
 #let name = "Miharu KOIKE"
 #let email = "halqme@icloud.com"
 #let github = "https://github.com/HALQME"
-#let website = "https://halqme.pages.dev"
+#let website = "https://0w0.foo"
 
 // ファイルメタデータ（ビルド時に自動更新）
 #let file-hash = "8f700b"
@@ -50,7 +50,7 @@
 #show: page.with(footer: {
   align(right)[
     #text(size: 7.5pt, fill: muted)[
-      updated: #last-updated \##file-hash |  https://halqme.pages.dev/cv.pdf
+      updated: #last-updated \##file-hash |  https://0w0.foo/cv.pdf
     ]
   ]
 })
@@ -124,7 +124,7 @@
   #text(size: 10pt, fill: subtext)[
     #link("mailto:" + email)[#email]  |
     #link(github)[GitHub: HALQME]  |
-    #link(website)[Portfolio: halqme.pages.dev]
+    #link(website)[Portfolio: 0w0.foo]
   ]
 ]
 

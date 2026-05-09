@@ -1,5 +1,5 @@
 export async function GET(context: { site?: URL | undefined }) {
-  const site = (context.site?.toString() ?? 'https://halqme.pages.dev').replace(/\/$/, '')
+  const site = (context.site?.toString() ?? 'https://0w0.foo').replace(/\/$/, '')
   return ((strings: TemplateStringsArray, ...values: any[]) => {
     const body = strings.reduce(
       (acc, str, i) => acc + str + (i < values.length ? String(values[i]) : ''),

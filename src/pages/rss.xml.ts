@@ -14,7 +14,7 @@ export async function GET(context: { site?: URL | undefined }) {
       pubDate: post.data.pubDate,
       title: post.data.title,
     })),
-    site: context.site ?? 'https://halqme.pages.dev',
+    site: context.site ?? 'https://0w0.foo',
     title: 'HALQME Blog',
   })
 }
