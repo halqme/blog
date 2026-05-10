@@ -44,8 +44,8 @@
 #let website = "https://0w0.foo"
 
 // ファイルメタデータ（ビルド時に自動更新）
-#let file-hash = "8f700b"
-#let last-updated = "2026-03-09"
+#let file-hash = "2c752b"
+#let last-updated = "2026-05-10"
 
 #show: page.with(footer: {
   align(right)[
