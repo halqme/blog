@@ -33,5 +33,5 @@ jobs:
             set -euo pipefail
             bun install --frozen-lockfile
             bun run build
-            bunx wrangler pages deploy ./dist --project-name=${{ secrets.CLOUDFLARE_PROJECT_NAME }}
+            bunx wrangler deploy
           '
