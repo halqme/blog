@@ -1,7 +1,10 @@
 ---
 import ThemeToggle from "./ThemeToggle.astro";
 
-const links = [{ href: "/blog", icon: "i-lucide:pen-tool", label: "Blog" }];
+const links = [
+  { href: "/blog", icon: "i-lucide:pen-tool", label: "Blog" },
+  { href: "https://apps.0w0.foo", icon: "i-lucide:file", label: "Gallery" }
+];
 
 const isNotHomePage = Astro.url.pathname !== "/";
 const isBlogPage =

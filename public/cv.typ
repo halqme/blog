@@ -38,9 +38,9 @@
 }
 
 // Variables
-#let name = "Miharu KOIKE"
-#let email = "halqme@icloud.com"
-#let github = "https://github.com/HALQME"
+#let name = "HAL"
+#let email = "contact@0w0.foo"
+#let github = "https://github.com/halqme"
 #let website = "https://0w0.foo"
 
 // ファイルメタデータ（ビルド時に自動更新）
