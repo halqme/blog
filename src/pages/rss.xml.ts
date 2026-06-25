@@ -10,7 +10,7 @@ export async function GET(context: { site?: URL | undefined }) {
     description: 'HALQMEのブログ',
     items: posts.map((post) => ({
       description: post.data.description,
-      link: `/blog/${post.id}/`,
+      link: `/${post.id}/`,
       pubDate: post.data.pubDate,
       title: post.data.title,
     })),
