@@ -2,13 +2,12 @@
 import ThemeToggle from "./ThemeToggle.astro";
 
 const links = [
-  { href: "/blog", icon: "i-lucide:pen-tool", label: "Blog" },
-  { href: "https://apps.0w0.foo", icon: "i-lucide:file", label: "Gallery" }
+  { href: "/", icon: "i-lucide:pen-tool", label: "Blog" },
+  { href: "/about", icon: "i-lucide:user", label: "About" },
+  { href: "https://apps.0w0.foo", icon: "i-lucide:file", label: "Gallery" },
 ];
 
 const isNotHomePage = Astro.url.pathname !== "/";
-const isBlogPage =
-  Astro.url.pathname === "/blog" || Astro.url.pathname.startsWith("/blog/tags");
 ---
 
 <header
@@ -32,34 +31,22 @@ const isBlogPage =
     <nav aria-label="メインナビゲーション">
       <ul class="flex gap-4">
         {
-          links.map((link) =>
-            isBlogPage ? null : (
-              <li>
-                <a
-                  href={link.href}
-                  class={`link-nav flex-inline before:content-empty items-center gap-1 py-1.5 before:${link.icon}`}
-                  aria-current={
-                    Astro.url.pathname.startsWith(link.href)
-                      ? "page"
-                      : undefined
-                  }
-                >
-                  {link.label}
-                </a>
-              </li>
-            ),
-          )
+          links.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class={"link-nav flex-inline before:content-empty items-center gap-1 py-1.5 before:" + link.icon}
+                aria-current={
+                  Astro.url.pathname.startsWith(link.href) && link.href !== "/"
+                    ? "page"
+                    : undefined
+                }
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
         }
-        <li>
-          <a
-            href="/cv.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="link-nav flex-inline before:content-empty before:i-lucide:file-text items-center gap-1 py-1.5"
-          >
-            CV
-          </a>
-        </li>
       </ul>
     </nav>
     <ThemeToggle />
