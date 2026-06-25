@@ -49,5 +49,5 @@ export default defineConfig({
       ],
     ],
   },
-  site: 'https://0w0.foo',
+  site: 'https://blog.0w0.foo',
 })

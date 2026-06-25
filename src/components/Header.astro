@@ -2,12 +2,11 @@
 import ThemeToggle from "./ThemeToggle.astro";
 
 const links = [
-  { href: "/", icon: "i-lucide:pen-tool", label: "Blog" },
   { href: "/about", icon: "i-lucide:user", label: "About" },
   { href: "https://apps.0w0.foo", icon: "i-lucide:file", label: "Gallery" },
 ];
 
-const isNotHomePage = Astro.url.pathname !== "/";
+const isNotHomePage = !((Astro.url.pathname == "/") || (Astro.url.pathname.startsWith("/tags")));
 ---
 
 <header
@@ -17,12 +16,9 @@ const isNotHomePage = Astro.url.pathname !== "/";
     isNotHomePage ? (
       <a
         href="/"
-        class="text-primary hover:text-subtle text-xl font-black tracking-tighter transition-colors"
-        aria-current={Astro.url.pathname === "/" ? "page" : undefined}
+        class="text-primary hover:text-subtle text-xl font-black tracking-tighter transition-colors i-lucide:home"
         transition:name="title"
-      >
-        HALQME
-      </a>
+      ></a>
     ) : (
       <div aria-hidden="true" />
     )

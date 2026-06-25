@@ -12,8 +12,7 @@
     deps = pkgs:
       with pkgs; [
         bun
-        nodejs-slim_24
-        typst
+        nodejs-slim_25
       ];
     fonts = pkgs:
       with pkgs; [
