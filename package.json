@@ -1,8 +1,7 @@
 {
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && bun run build:cv",
-    "build:cv": "bun run scripts/generate-cv-meta.ts && typst compile public/cv.typ dist/cv.pdf",
+    "build": "astro build",
     "preview": "astro preview",
     "deploy": "wrangler deploy",
     "astro": "astro",
