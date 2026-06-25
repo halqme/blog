@@ -127,7 +127,7 @@ GitHub Copilot、便利ですね。レビューもしてくれるなんて最高
 
 ```ts
 // このコードは後で実装
-const hoge = () => {}
+const hoge = () => {};
 
 // eslint-disable-next-line
 function fuga() {}

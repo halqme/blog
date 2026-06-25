@@ -1,14 +1,14 @@
 ---
-title: 'Apple Silicon Macの仮想化はTartがよかった'
+title: "Apple Silicon Macの仮想化はTartがよかった"
 description: Apple Virtualization Frameworkをフル活用。CUIの操作感でGUIも扱える、Apple Silicon Mac特化の仮想化ツール「Tart」の導入から活用まで。
-pubDate: '2024-08-15'
+pubDate: "2024-08-15"
 tags:
-  - 'mac'
-  - 'virtualization'
-  - 'tart'
-  - 'linux'
-  - 'docker'
-  - 'cli'
+  - "mac"
+  - "virtualization"
+  - "tart"
+  - "linux"
+  - "docker"
+  - "cli"
 ---
 
 ## 最初に
@@ -17,7 +17,7 @@ Apple Silicon Mac で仮想マシンを使うときといえば、GUI なら UTM
 
 そこで、今回紹介するのが、Tart です｡
 
-[cirruslabs/tart](https://github.com/cirruslabs/tart 'cirruslabs/tart') は Apple Silicon 上で macOS および Linux 仮想マシンを構築、実行、管理するための仮想化ツールセットです｡Apple Virtualization Framework によって高速な仮想マシンを利用することができます｡
+[cirruslabs/tart](https://github.com/cirruslabs/tart "cirruslabs/tart") は Apple Silicon 上で macOS および Linux 仮想マシンを構築、実行、管理するための仮想化ツールセットです｡Apple Virtualization Framework によって高速な仮想マシンを利用することができます｡
 
 https://tart.run/
 
@@ -25,7 +25,7 @@ Tartはcli から仮想マシンの管理を行いますが、仮想マシンを
 
 調べてみましたが何も分かりませんでした！としてしまいそうなほどに情報がありませんでした｡
 
-Tart の存在を教えてくださった豆蔵デベロッパーサイト様に、ここで謝意を述べさせていただきます｡ [Tart で macOS / Linux の仮想マシンを使う | 豆蔵デベロッパーサイト](https://developer.mamezou-tech.com/blogs/2024/02/12/tart-vm/#%E7%8B%AC%E8%87%AA%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B8%E3%81%AE%E4%BD%9C%E6%88%90 'Tart で macOS / Linux の仮想マシンを使う | 豆蔵デベロッパーサイト')
+Tart の存在を教えてくださった豆蔵デベロッパーサイト様に、ここで謝意を述べさせていただきます｡ [Tart で macOS / Linux の仮想マシンを使う | 豆蔵デベロッパーサイト](https://developer.mamezou-tech.com/blogs/2024/02/12/tart-vm/#%E7%8B%AC%E8%87%AA%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B8%E3%81%AE%E4%BD%9C%E6%88%90 "Tart で macOS / Linux の仮想マシンを使う | 豆蔵デベロッパーサイト")
 
 \*Cirrus Runners では仮想化技術として Tart を用いて CI ランナーを提供していますが、今回は扱いません｡
 
@@ -77,7 +77,7 @@ tart run sequoia
 
 実行すると新しいウィンドウが開き、仮想マシンの macOS が起動します｡かなり起動が早いです｡
 
-取得可能な公式イメージは[full list of image](https://github.com/orgs/cirruslabs/packages?tab=packages&q=macos- 'full list of image')に掲載されています｡
+取得可能な公式イメージは[full list of image](https://github.com/orgs/cirruslabs/packages?tab=packages&q=macos- "full list of image")に掲載されています｡
 
 ざっくりとした特徴としては、以下の通りです｡
 

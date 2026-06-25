@@ -156,12 +156,12 @@ registry:
 
 # カスタムカラー
 colors:
-  title: '#00ff00'
-  input: '#ffffff'
-  mark: '#ff00ff'
-  item: '#cccccc'
-  sub: '#888888'
-  help: '#666666'
+  title: "#00ff00"
+  input: "#ffffff"
+  mark: "#ff00ff"
+  item: "#cccccc"
+  sub: "#888888"
+  help: "#666666"
 ```
 
 ## Pluginの作成

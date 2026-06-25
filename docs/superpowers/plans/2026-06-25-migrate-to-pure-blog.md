@@ -21,6 +21,7 @@
 ### Task 1: Create root-level individual blog post route
 
 **Files:**
+
 - Create: `src/pages/[...slug].astro`
 
 **This is a copy of `src/pages/blog/[...slug].astro` with one import path adjusted.**
@@ -92,6 +93,7 @@ git commit -m "feat: add root-level blog post route"
 ### Task 2: Create root-level tag routes
 
 **Files:**
+
 - Create: `src/pages/tags/index.astro`
 - Create: `src/pages/tags/[tag].astro`
 
@@ -100,6 +102,7 @@ git commit -m "feat: add root-level blog post route"
 - [ ] **Step 1: Create `src/pages/tags/index.astro`**
 
 Copy content from `src/pages/blog/tags/index.astro` with these changes:
+
 - Import paths: `../../../layouts/Layout.astro` → `../../layouts/Layout.astro`, `../../../components/BlogCard.astro` → `../../components/BlogCard.astro`
 - Link href: `/blog/tags` → `/tags`
 - Link href template: `` `/blog/tags/${tag.toLowerCase()}` `` → `` `/tags/${tag.toLowerCase()}` ``
@@ -191,6 +194,7 @@ const sortedTags = Object.entries(tagCounts).toSorted((a, b) => {
 - [ ] **Step 2: Create `src/pages/tags/[tag].astro`**
 
 Copy content from `src/pages/blog/tags/[tag].astro` with these changes:
+
 - Import paths: `../../../layouts/Layout.astro` → `../../layouts/Layout.astro`, `../../../components/BlogCard.astro` → `../../components/BlogCard.astro`
 - Link href: `/blog/tags` → `/tags`
 
@@ -276,6 +280,7 @@ git commit -m "feat: add root-level tag routes"
 ### Task 3: Rewrite index page as full blog listing
 
 **Files:**
+
 - Modify: `src/pages/index.astro` (full rewrite)
 
 Replace the current index page (Hero + About + RecentPosts) with a full blog listing (content from `src/pages/blog/index.astro` adapted for root).
@@ -333,6 +338,7 @@ git commit -m "feat: rewrite index as full blog listing"
 ### Task 4: Create about page
 
 **Files:**
+
 - Create: `src/pages/about.astro`
 
 Content based on `src/components/About.astro` but without CV PDF link. Use `Layout` instead of inline section.
@@ -421,6 +427,7 @@ git commit -m "feat: add about page"
 ### Task 5: Update Header navigation
 
 **Files:**
+
 - Modify: `src/components/Header.astro`
 
 - Remove CV link
@@ -490,6 +497,7 @@ const isNotHomePage = Astro.url.pathname !== "/";
 ```
 
 Key changes:
+
 - Removed CV link entirely
 - Added About link with `i-lucide:user`
 - Removed `isBlogPage` check and its conditional
@@ -513,6 +521,7 @@ git commit -m "feat: update header navigation (remove CV, add About)"
 ### Task 6: Update internal links in components and RSS
 
 **Files:**
+
 - Modify: `src/components/BlogCard.astro`
 - Modify: `src/layouts/BlogPost.astro`
 - Modify: `src/pages/rss.xml.ts`
@@ -523,18 +532,18 @@ Update all `/blog/` prefixed links to root-level paths.
 
 Change two href patterns:
 
-Line 22: `` href={`/blog/${post.id}/`} `` → `` href={`/${post.id}/`} ``
-Line 47: `` href={`/blog/tags/${isActiveTag(tag) ? "" : tag.toLowerCase()}`} `` → `` href={`/tags/${isActiveTag(tag) ? "" : tag.toLowerCase()}`} ``
+Line 22: ``href={`/blog/${post.id}/`}`` → ``href={`/${post.id}/`}``
+Line 47: ``href={`/blog/tags/${isActiveTag(tag) ? "" : tag.toLowerCase()}`}`` → ``href={`/tags/${isActiveTag(tag) ? "" : tag.toLowerCase()}`}``
 
 Also update the tag href in the tag link block — the one after `line-clamp-3` condition block.
 
 - [ ] **Step 2: Update `src/layouts/BlogPost.astro`**
 
-Line 83: `` href={`/blog/tags/${tag.toLowerCase()}`} `` → `` href={`/tags/${tag.toLowerCase()}`} ``
+Line 83: ``href={`/blog/tags/${tag.toLowerCase()}`}`` → ``href={`/tags/${tag.toLowerCase()}`}``
 
 - [ ] **Step 3: Update `src/pages/rss.xml.ts`**
 
-Line 13: `` link: `/blog/${post.id}/`, `` → `` link: `/${post.id}/`, ``
+Line 13: ``link: `/blog/${post.id}/`,`` → ``link: `/${post.id}/`,``
 
 - [ ] **Step 4: Verify build**
 
@@ -553,6 +562,7 @@ git commit -m "fix: update blog path references to root-level paths"
 ### Task 7: Delete old blog routes and unused components
 
 **Files to delete:**
+
 - `src/pages/blog/index.astro`
 - `src/pages/blog/[...slug].astro`
 - `src/pages/blog/tags/index.astro`
@@ -589,10 +599,12 @@ git commit -m "chore: remove old blog routes and unused components"
 ### Task 8: Remove CV files and update build config
 
 **Files to delete:**
+
 - `scripts/generate-cv-meta.ts`
 - `public/cv.typ`
 
 **Files to modify:**
+
 - `package.json` — remove CV build scripts
 - `README.md` — update docs
 
@@ -605,12 +617,14 @@ git rm scripts/generate-cv-meta.ts public/cv.typ
 - [ ] **Step 2: Update `package.json`**
 
 Change the `build` script from:
+
 ```
 "build": "astro build && bun run build:cv",
 "build:cv": "bun run scripts/generate-cv-meta.ts && typst compile public/cv.typ dist/cv.pdf",
 ```
 
 To:
+
 ```
 "build": "astro build",
 ```

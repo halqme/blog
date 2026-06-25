@@ -1,8 +1,8 @@
 ---
-title: 'Nix Flakes + Home Manager による Dotfiles の宣言的管理'
-description: 'Nix Flakes と Home Manager を使用した、macOS および Linux 環境の構成管理手法について、その構造と実装の詳細を解説します。'
+title: "Nix Flakes + Home Manager による Dotfiles の宣言的管理"
+description: "Nix Flakes と Home Manager を使用した、macOS および Linux 環境の構成管理手法について、その構造と実装の詳細を解説します。"
 pubDate: 2026-05-10
-tags: ['Nix', 'Home Manager', 'Dotfiles', 'macOS']
+tags: ["Nix", "Home Manager", "Dotfiles", "macOS"]
 ---
 
 環境構築の再現性を担保する手段としてNixは非常に強力なツールです。僕自身の [dotfiles](https://github.com/halqme/dotfiles) リポジトリでは、Nix Flakes と Home Manager を基盤とした宣言的な構成管理を運用しています。
