@@ -116,7 +116,7 @@ export const GET: APIRoute = async () => {
           },
           {
             props: {
-              children: "0w0.foo",
+              children: "blog.0w0.foo",
               style: {
                 bottom: "40px",
                 color: "#666666",

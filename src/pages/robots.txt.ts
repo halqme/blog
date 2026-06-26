@@ -1,5 +1,5 @@
 export async function GET(context: { site?: URL | undefined }) {
-  const site = (context.site?.toString() ?? "https://0w0.foo").replace(
+  const site = (context.site?.toString() ?? "https://blog.0w0.foo").replace(
     /\/$/,
     "",
   );

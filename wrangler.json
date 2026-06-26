@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "halqme",
+  "name": "blog",
   "compatibility_date": "2026-05-10",
   "observability": {
     "enabled": true
@@ -12,11 +12,7 @@
   "compatibility_flags": ["nodejs_compat"],
   "routes": [
     {
-      "pattern": "0w0.foo",
-      "custom_domain": true
-    },
-    {
-      "pattern": "www.0w0.foo",
+      "pattern": "blog.0w0.foo",
       "custom_domain": true
     }
   ]
