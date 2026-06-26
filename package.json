@@ -10,7 +10,6 @@
     "lint": "vp lint ."
   },
   "dependencies": {
-    "@astrojs/mdx": "7.0.0",
     "@astrojs/rss": "4.0.18",
     "@astrojs/sitemap": "3.7.3",
     "@resvg/resvg-js": "2.6.2",

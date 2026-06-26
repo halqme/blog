@@ -24,18 +24,6 @@ export default defineConfig({
       injectReset: true,
     }),
     sitemap(),
-    mdx({
-      remarkPlugins: [
-        [
-          remarkLinkCard,
-          {
-            cache: true,
-            shortenUrl: true,
-            thumbnailPosition: "right",
-          },
-        ],
-      ],
-    }),
   ],
   markdown: {
     remarkPlugins: [
