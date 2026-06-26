@@ -1,9 +1,10 @@
 ---
-import Layout from "./Layout.astro";
+import type { MarkdownHeading } from "astro";
 import type { CollectionEntry } from "astro:content";
 import ShareButtons from "../components/ShareButtons.astro";
 import TableOfContents from "../components/TableOfContents.astro";
-import type { MarkdownHeading } from "astro";
+import { slugifyTag } from "../lib/tag";
+import Layout from "./Layout.astro";
 
 type Props = CollectionEntry<"blog">["data"] & {
   slug: string;
@@ -80,7 +81,7 @@ const ogImage = heroImage || `/ogp/${slug}.png`;
             {tags.map((tag: string) => (
               <li>
                 <a
-                  href={`/tags/${tag.toLowerCase()}`}
+                  href={`/tags/${slugifyTag(tag)}`}
                   class="tag tag-hover before:content-empty before:i-lucide:tag before:text-light"
                 >
                   {tag}

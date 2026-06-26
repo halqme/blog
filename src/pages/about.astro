@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import { slugifyTag } from "../lib/tag";
 import Layout from "../layouts/Layout.astro";
 
 const tags = [
@@ -14,9 +15,7 @@ const tags = [
 
 const blogPosts = await getCollection("blog");
 const blogTags = new Set(
-  blogPosts.flatMap((post) =>
-    post.data.tags.map((t: string) => t.toLowerCase()),
-  ),
+  blogPosts.flatMap((post) => post.data.tags.map((t: string) => slugifyTag(t))),
 );
 ---
 
@@ -38,10 +37,10 @@ const blogTags = new Set(
       <ul class="mt-4 flex list-none flex-wrap gap-3 pl-0 select-none">
         {
           tags.map((label) =>
-            blogTags.has(label.toLowerCase()) ? (
+            blogTags.has(slugifyTag(label)) ? (
               <li class="m-0 p-0">
                 <a
-                  href={"/tags/" + label.toLowerCase()}
+                  href={"/tags/" + slugifyTag(label)}
                   class="tag decoration-none"
                 >
                   {label}
