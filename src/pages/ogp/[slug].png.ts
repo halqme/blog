@@ -4,7 +4,7 @@ import { join } from "node:path";
 
 import { Resvg } from "@resvg/resvg-js";
 import type { APIRoute } from "astro";
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import satori from "satori";
 
 const CACHE_DIR = join(process.cwd(), ".cache");
@@ -22,7 +22,7 @@ const SLICE_START = 0;
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
-  return posts.map((post) => ({
+  return posts.map((post: CollectionEntry<"blog">) => ({
     params: { slug: post.id },
     props: { title: post.data.title },
   }));

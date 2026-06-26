@@ -1,8 +1,8 @@
-import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import { defineConfig, fontProviders } from "astro/config";
-import remarkLinkCard from "remark-link-card";
+import { satteri } from "@astrojs/markdown-satteri";
 import UnoCSS from "unocss/astro";
+import { linkCardPlugin } from "./src/plugins/link-card";
 
 export default defineConfig({
   fonts: [
@@ -26,16 +26,10 @@ export default defineConfig({
     sitemap(),
   ],
   markdown: {
-    remarkPlugins: [
-      [
-        remarkLinkCard,
-        {
-          cache: true,
-          shortenUrl: true,
-          thumbnailPosition: "right",
-        },
-      ],
-    ],
+    processor: satteri({
+      features: { gfm: true },
+      hastPlugins: [linkCardPlugin],
+    }),
   },
   site: "https://blog.0w0.foo",
 });
