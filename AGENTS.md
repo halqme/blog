@@ -90,8 +90,8 @@ bun run wrangler    # Run Cloudflare Wrangler CLI
 - Use `interface` for component Props, named `Props`:
   ```typescript
   interface Props {
-    title: string
-    description?: string
+    title: string;
+    description?: string;
   }
   ```
 - Use Astro's content collections with Zod schemas for type-safe content
@@ -100,8 +100,8 @@ bun run wrangler    # Run Cloudflare Wrangler CLI
 
 - Use named imports (not default):
   ```typescript
-  import { getCollection } from 'astro:content'
-  import type { CollectionEntry } from 'astro:content'
+  import { getCollection } from "astro:content";
+  import type { CollectionEntry } from "astro:content";
   ```
 - Import order: external → internal → relative (enforced by oxlint)
 
@@ -154,11 +154,15 @@ bun run wrangler    # Run Cloudflare Wrangler CLI
 
 ## Linting & Formatting
 
-**oxlint** (not ESLint): Plugins - typescript, unicorn, oxc, import. Key rules: `no-unused-vars` (error, warn in pages), `no-debugger` (warn), `import/order` (warn), `jsx-a11y/no-static-element-interactions` (error).
+**Vite+** (`vp`): Unified toolchain managing Oxlint + Oxfmt. Config in `vite.config.ts`.
 
-**prettier + oxfmt**: Prettier plugins - `prettier-plugin-astro`, `prettier-plugin-tailwindcss`. Astro files use the `astro` parser.
+- Lint: `bun run lint` (`vp lint .`)
+- Format: `bun run format` (`vp fmt .`)
+- Both: `bun run check` (`vp check`)
 
-Run: `bun run lint` / `bun run format`
+Key lint rules: `no-unused-vars` (error, warn in pages), `no-debugger` (warn), `import/order` (warn), `jsx-a11y/no-static-element-interactions` (error).
+
+**Note**: `.oxlintrc.json` and `.prettierrc` have been migrated into `vite.config.ts`.
 
 ---
 

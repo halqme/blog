@@ -1,38 +1,40 @@
 ---
 import { getCollection } from "astro:content";
-import Layout from "../../../layouts/Layout.astro";
-import BlogCard from "../../../components/BlogCard.astro";
+import BlogCard from "../../components/BlogCard.astro";
+import { slugifyTag } from "../../lib/tag";
+import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
-  const uniqueTags = [
-    ...new Set(
-      posts.flatMap((post) =>
-        post.data.tags.map((t: string) => t.toLowerCase()),
-      ),
-    ),
-  ];
+  const tags = new Map<string, string>();
 
-  return uniqueTags.map((tag) => {
+  posts.forEach((post) => {
+    post.data.tags.forEach((tag: string) => {
+      const slug = slugifyTag(tag);
+      if (!tags.has(slug)) {
+        tags.set(slug, tag);
+      }
+    });
+  });
+
+  return [...tags.entries()].map(([tag, label]) => {
     const filteredPosts = posts
       .filter((post) =>
-        post.data.tags.some(
-          (t: string) => t.toLowerCase() === tag.toLowerCase(),
-        ),
+        post.data.tags.some((entry: string) => slugifyTag(entry) === tag),
       )
       .toSorted((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
     return {
       params: { tag },
-      props: { posts: filteredPosts, tag },
+      props: { label, posts: filteredPosts, tag },
     };
   });
 }
 
 const { tag } = Astro.params;
-const { posts } = Astro.props;
+const { label, posts } = Astro.props;
 ---
 
-<Layout title={`Blog | #${tag} | HALQME`}>
+<Layout title={`Blog | #${label} | HALQME`}>
   <section aria-labelledby="tag-title">
     <div class="flex items-center justify-between">
       <h1
@@ -40,10 +42,10 @@ const { posts } = Astro.props;
         class="text-headline bg-base before:content-empty before:i-lucide:tag mb-0 flex items-center gap-3 select-none"
         transition:animate="slide"
       >
-        {tag}
+        {label}
       </h1>
       <a
-        href="/blog/tags"
+        href="/tags"
         class="btn-ghost before:content-empty before:i-lucide:tags text-sm"
       >
         Tags

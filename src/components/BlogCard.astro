@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { slugifyTag } from "../lib/tag";
 
 interface Props {
   post: CollectionEntry<"blog">;
@@ -8,8 +9,7 @@ interface Props {
 
 const { post, activeTag = null } = Astro.props;
 
-const isActiveTag = (tag: string) =>
-  activeTag && activeTag.toLowerCase() === tag.toLowerCase();
+const isActiveTag = (tag: string) => activeTag === slugifyTag(tag);
 ---
 
 <article
@@ -19,7 +19,7 @@ const isActiveTag = (tag: string) =>
   <div class="flex-1 p-6">
     <h2 class="text-headline relative mb-2">
       <a
-        href={`/blog/${post.id}/`}
+        href={`/${post.id}/`}
         class="decoration-2 underline-offset-4 group-hover:underline"
         transition:name={`blog-title-${post.id}`}
       >
@@ -44,7 +44,7 @@ const isActiveTag = (tag: string) =>
         <div class="flex flex-wrap gap-2">
           {post.data.tags.map((tag: string) => (
             <a
-              href={`/blog/tags/${isActiveTag(tag) ? "" : tag.toLowerCase()}`}
+              href={`/tags/${isActiveTag(tag) ? "" : slugifyTag(tag)}`}
               class:list={[
                 "tag before:content-empty before:i-lucide:tag text-xs",
                 isActiveTag(tag)

@@ -1,13 +1,8 @@
 ---
 import { getCollection } from "astro:content";
-import Layout from "../../../layouts/Layout.astro";
-import BlogCard from "../../../components/BlogCard.astro";
-
-// タグ集計の定数
-const INITIAL_TAG_COUNT = 0;
-const INCREMENT_COUNT = 1;
-const TAG_COUNT_INDEX = 1;
-const TAG_NAME_INDEX = 0;
+import BlogCard from "../../components/BlogCard.astro";
+import { slugifyTag } from "../../lib/tag";
+import Layout from "../../layouts/Layout.astro";
 
 const posts = (await getCollection("blog")).toSorted(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -16,20 +11,24 @@ const posts = (await getCollection("blog")).toSorted(
 const tagCounts = posts.reduce(
   (acc, post) => {
     post.data.tags.forEach((tag: string) => {
-      const normalizedTag = tag.toLowerCase();
-      acc[normalizedTag] =
-        (acc[normalizedTag] || INITIAL_TAG_COUNT) + INCREMENT_COUNT;
+      const slug = slugifyTag(tag);
+      const current = acc.get(slug);
+      if (current) {
+        current.count += 1;
+        return;
+      }
+      acc.set(slug, { count: 1, label: tag });
     });
     return acc;
   },
-  {} as Record<string, number>,
+  new Map<string, { count: number; label: string }>(),
 );
 
-const sortedTags = Object.entries(tagCounts).toSorted((a, b) => {
-  if (b[TAG_COUNT_INDEX] !== a[TAG_COUNT_INDEX]) {
-    return b[TAG_COUNT_INDEX] - a[TAG_COUNT_INDEX];
+const sortedTags = [...tagCounts.entries()].toSorted((a, b) => {
+  if (b[1].count !== a[1].count) {
+    return b[1].count - a[1].count;
   }
-  return a[TAG_NAME_INDEX].localeCompare(b[TAG_NAME_INDEX]);
+  return a[1].label.localeCompare(b[1].label);
 });
 ---
 
@@ -43,7 +42,7 @@ const sortedTags = Object.entries(tagCounts).toSorted((a, b) => {
         Blog
       </h1>
       <a
-        href="/blog"
+        href="/"
         class="btn-primary before:content-empty before:i-lucide:tags text-sm"
       >
         Tags
@@ -56,14 +55,14 @@ const sortedTags = Object.entries(tagCounts).toSorted((a, b) => {
       <p class="text-body">タグがありません。</p>
     ) : (
       <div class="flex flex-wrap gap-3">
-        {sortedTags.map(([tag, count]) => (
+        {sortedTags.map(([slug, tag]) => (
           <a
-            href={`/blog/tags/${tag.toLowerCase()}`}
+            href={`/tags/${slug}`}
             class="tag tag-hover group before:content-empty before:i-lucide:tag before:text-light hover:before:text-muted before:transition-colors"
           >
-            <span class="text-subtle">{tag}</span>
+            <span class="text-subtle">{tag.label}</span>
             <span class="border-base text-muted ml-1 border-l pl-1.5 text-xs">
-              {count}
+              {tag.count}
             </span>
           </a>
         ))}

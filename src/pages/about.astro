@@ -1,0 +1,59 @@
+---
+import { getCollection } from "astro:content";
+import { slugifyTag } from "../lib/tag";
+import Layout from "../layouts/Layout.astro";
+
+const tags = [
+  "Osaka, Japan",
+  "TypeScript",
+  "Bun",
+  "Vue.js",
+  "Hono",
+  "Swift",
+  "Astro",
+] as const;
+
+const blogPosts = await getCollection("blog");
+const blogTags = new Set(
+  blogPosts.flatMap((post) => post.data.tags.map((t: string) => slugifyTag(t))),
+);
+---
+
+<Layout title="About | HALQME">
+  <section class="section-border" aria-labelledby="about-title">
+    <h2
+      id="about-title"
+      class="text-headline mb-6 flex items-center justify-between gap-3"
+    >
+      About Me
+    </h2>
+    <div class="text-body">
+      <p>
+        Hi, I'm HAL. I am a university student based in Osaka, Japan, majoring in
+        Psychology. I have a passion for web development and creating useful
+        tools.
+      </p>
+
+      <ul class="mt-4 flex list-none flex-wrap gap-3 pl-0 select-none">
+        {
+          tags.map((label) =>
+            blogTags.has(slugifyTag(label)) ? (
+              <li class="m-0 p-0">
+                <a
+                  href={"/tags/" + slugifyTag(label)}
+                  class="tag decoration-none"
+                >
+                  {label}
+                </a>
+              </li>
+            ) : (
+              <li class="m-0 p-0">
+                <span class="tag">{label}</span>
+              </li>
+            ),
+          )
+        }
+      </ul>
+    </div>
+  </section>
+</Layout>

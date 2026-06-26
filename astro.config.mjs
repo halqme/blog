@@ -1,20 +1,20 @@
-import mdx from '@astrojs/mdx'
-import sitemap from '@astrojs/sitemap'
-import { defineConfig, fontProviders } from 'astro/config'
-import remarkLinkCard from 'remark-link-card'
-import UnoCSS from 'unocss/astro'
+import sitemap from "@astrojs/sitemap";
+import { defineConfig, fontProviders } from "astro/config";
+import { satteri } from "@astrojs/markdown-satteri";
+import UnoCSS from "unocss/astro";
+import { linkCardPlugin } from "./src/plugins/link-card";
 
 export default defineConfig({
   fonts: [
     {
-      cssVariable: '--font-shippori-antique',
-      name: 'Shippori Antique',
+      cssVariable: "--font-shippori-antique",
+      name: "Shippori Antique",
       provider: fontProviders.fontsource(),
       weights: [400],
     },
     {
-      cssVariable: '--font-ia-writer-mono',
-      name: 'iA Writer Mono',
+      cssVariable: "--font-ia-writer-mono",
+      name: "iA Writer Mono",
       provider: fontProviders.fontsource(),
       weights: [400, 500],
     },
@@ -24,30 +24,12 @@ export default defineConfig({
       injectReset: true,
     }),
     sitemap(),
-    mdx({
-      remarkPlugins: [
-        [
-          remarkLinkCard,
-          {
-            cache: true,
-            shortenUrl: true,
-            thumbnailPosition: 'right',
-          },
-        ],
-      ],
-    }),
   ],
   markdown: {
-    remarkPlugins: [
-      [
-        remarkLinkCard,
-        {
-          cache: true,
-          shortenUrl: true,
-          thumbnailPosition: 'right',
-        },
-      ],
-    ],
+    processor: satteri({
+      features: { gfm: true },
+      hastPlugins: [linkCardPlugin],
+    }),
   },
-  site: 'https://0w0.foo',
-})
+  site: "https://blog.0w0.foo",
+});
