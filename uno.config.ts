@@ -135,7 +135,9 @@ const tokens = {
 
 export default defineConfig({
   presets: [
-    presetWind4(),
+    presetWind4({
+      dark: "media",
+    }),
     presetIcons({
       extraProperties: {
         display: "inline-block",
@@ -220,13 +222,13 @@ export default defineConfig({
     {
       // Headings - Geist has distinctive character
       "text-display":
-        "text-5xl md:text-7xl font-bold tracking-tighter text-primary font-sans",
+        "text-3xl md:text-5xl font-bold tracking-tighter text-primary font-sans",
       "text-headline":
-        "text-2xl font-semibold tracking-tight text-primary font-sans",
+        "text-xl md:text-2xl font-semibold tracking-tight text-primary font-sans",
       "text-subhead":
         "text-lg font-medium tracking-tight text-primary font-sans",
       "text-title":
-        "text-3xl md:text-4xl font-bold tracking-tight text-primary font-sans",
+        "text-xl md:text-2xl font-bold tracking-tight text-primary font-sans",
     },
     {
       // Labels/Meta
@@ -251,7 +253,7 @@ export default defineConfig({
     // Layout
     // ===========================================
     {
-      "container-article": "max-w-6xl mx-auto px-6 md:px-12",
+      "container-article": "max-w-6xl mx-auto",
       "container-main": "max-w-5xl mx-auto px-6 md:px-12",
       "container-narrow": "max-w-3xl mx-auto px-6 md:px-12",
       "container-wide": "max-w-7xl mx-auto px-6 md:px-12",
@@ -289,7 +291,7 @@ export default defineConfig({
       "card-interactive": "card card-hover cursor-pointer",
     },
     {
-      tag: "inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium bg-base text-primary border border-base rounded-xs transition-all duration-200",
+      tag: "inline-flex items-center gap-1 px-2 py-1 text-xs font-medium bg-base text-primary border border-base rounded-xs transition-all duration-200",
       "tag-hover": "hover:border-dark hover:shadow-card-sm",
     },
     {

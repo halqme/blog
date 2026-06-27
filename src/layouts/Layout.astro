@@ -16,7 +16,7 @@ interface Props {
 
 const {
   title,
-  description = "HALQME's Blog",
+  description = "HAL's Blog",
   ogImage,
   ogType = "website",
   pubDate,
@@ -49,17 +49,6 @@ const absoluteOgImage = ogImage
     />
     <ClientRouter />
     <title>{title}</title>
-
-    <script is:inline>
-      const theme = localStorage.getItem("theme") || "auto";
-      if (
-        theme === "dark" ||
-        (theme === "auto" &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
-        document.documentElement.classList.add("dark");
-      }
-    </script>
 
     {
       absoluteOgImage && (
@@ -117,7 +106,7 @@ const absoluteOgImage = ogImage
       メインコンテンツへスキップ
     </a>
     <Header />
-    <main id="main-content" class="container-main w-full flex-1 py-6 md:py-20">
+    <main id="main-content" class="container-main w-full flex-1 py-6 md:py-12">
       <slot />
     </main>
     <Footer />

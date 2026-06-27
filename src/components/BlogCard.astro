@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import Tag from "./Tag.astro";
 import { slugifyTag } from "../lib/tag";
 
 interface Props {
@@ -13,48 +14,46 @@ const isActiveTag = (tag: string) => activeTag === slugifyTag(tag);
 ---
 
 <article
-  class="card-interactive group relative flex flex-col"
+  class="group border-base border-t first:border-t-0 py-3.5 md:py-5"
   transition:name={`blog-card-${post.id}`}
 >
-  <div class="flex-1 p-6">
-    <h2 class="text-headline relative mb-2">
-      <a
-        href={`/${post.id}/`}
-        class="decoration-2 underline-offset-4 group-hover:underline"
-        transition:name={`blog-title-${post.id}`}
-      >
-        <span class="absolute inset-0 z-10" aria-hidden="true"></span>
-        {post.data.title}
-      </a>
-    </h2>
-    <div class="text-label before:content-empty before:i-lucide:calendar mb-3">
+  <div class="grid gap-1.5 md:grid-cols-[9rem_1fr] md:gap-8">
+    <div class="text-label flex items-center gap-2 text-[0.68rem] md:block md:pt-1 md:text-xs">
       <time datetime={post.data.pubDate.toISOString()}>
         {post.data.pubDate.toLocaleDateString("ja-JP")}
       </time>
     </div>
-    {
-      post.data.description && (
-        <p class="text-body mb-4 line-clamp-3">{post.data.description}</p>
-      )
-    }
+
+    <div>
+      <h2 class="relative mb-1 text-base font-semibold tracking-tight text-primary md:text-xl">
+        <a
+          href={`/${post.id}/`}
+          class="decoration-2 underline-offset-4 group-hover:underline"
+          transition:name={`blog-title-${post.id}`}
+        >
+          {post.data.title}
+        </a>
+      </h2>
+      {
+        post.data.description && (
+          <p class="mb-2.5 max-w-2xl text-xs leading-relaxed text-subtle md:mb-4 md:text-sm">
+            {post.data.description}
+          </p>
+        )
+      }
+    </div>
   </div>
   {
     post.data.tags && post.data.tags.length > 0 && (
-      <div class="relative z-20 px-6 pt-0 pb-6">
-        <div class="flex flex-wrap gap-2">
+      <div class="md:ml-[calc(9rem+2rem)]">
+        <div class="flex flex-wrap gap-1.5">
           {post.data.tags.map((tag: string) => (
-            <a
+            <Tag
+              label={tag}
               href={`/tags/${isActiveTag(tag) ? "" : slugifyTag(tag)}`}
-              class:list={[
-                "tag before:content-empty before:i-lucide:tag text-xs",
-                isActiveTag(tag)
-                  ? "border-dark bg-primary text-secondary shadow-card-subtle"
-                  : "",
-              ]}
-              aria-current={isActiveTag(tag) ? "page" : undefined}
-            >
-              {tag}
-            </a>
+              active={isActiveTag(tag)}
+              class="text-[0.68rem] md:text-xs"
+            />
           ))}
         </div>
       </div>

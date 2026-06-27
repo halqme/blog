@@ -11,12 +11,7 @@ const posts = (await getCollection("blog")).toSorted(
 <Layout title="HALQME's Blog">
   <section aria-labelledby="blog-title">
     <div class="mb-4 flex items-center justify-between">
-      <h1
-        id="blog-title"
-        class="text-headline before:content-empty before:i-lucide:pen-tool flex items-center gap-3"
-      >
-        Blog
-      </h1>
+      <div aria-hidden='true'></div>
       <a
         href="/tags"
         class="btn-ghost before:content-empty before:i-lucide:tags text-sm"
@@ -25,7 +20,7 @@ const posts = (await getCollection("blog")).toSorted(
       </a>
     </div>
   </section>
-  <div class="grid gap-8 md:grid-cols-2">
+  <div class="mt-4">
     {posts.map((post) => <BlogCard post={post} />)}
   </div>
 </Layout>

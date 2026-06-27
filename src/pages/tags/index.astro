@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import BlogCard from "../../components/BlogCard.astro";
+import Tag from "../../components/Tag.astro";
 import { slugifyTag } from "../../lib/tag";
 import Layout from "../../layouts/Layout.astro";
 
@@ -35,12 +36,7 @@ const sortedTags = [...tagCounts.entries()].toSorted((a, b) => {
 <Layout title="Blog | All Tags | HALQME">
   <section aria-labelledby="blog-title">
     <div class="mb-4 flex items-center justify-between">
-      <h1
-        id="blog-title"
-        class="text-headline before:content-empty before:i-lucide:pen-tool flex items-center gap-3"
-      >
-        Blog
-      </h1>
+      <div aria-hidden='true'></div>
       <a
         href="/"
         class="btn-primary before:content-empty before:i-lucide:tags text-sm"
@@ -56,15 +52,7 @@ const sortedTags = [...tagCounts.entries()].toSorted((a, b) => {
     ) : (
       <div class="flex flex-wrap gap-3">
         {sortedTags.map(([slug, tag]) => (
-          <a
-            href={`/tags/${slug}`}
-            class="tag tag-hover group before:content-empty before:i-lucide:tag before:text-light hover:before:text-muted before:transition-colors"
-          >
-            <span class="text-subtle">{tag.label}</span>
-            <span class="border-base text-muted ml-1 border-l pl-1.5 text-xs">
-              {tag.count}
-            </span>
-          </a>
+          <Tag label={tag.label} href={`/tags/${slug}`} count={tag.count} />
         ))}
       </div>
     )
@@ -72,7 +60,7 @@ const sortedTags = [...tagCounts.entries()].toSorted((a, b) => {
 
   <hr class="border-light my-8" />
 
-  <div class="grid gap-8 md:grid-cols-2">
+  <div class="mt-8">
     {posts.map((post) => <BlogCard post={post} />)}
   </div>
 </Layout>

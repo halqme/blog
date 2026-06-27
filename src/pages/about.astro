@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import Tag from "../components/Tag.astro";
 import { slugifyTag } from "../lib/tag";
 import Layout from "../layouts/Layout.astro";
 
@@ -11,6 +12,7 @@ const tags = [
   "Hono",
   "Swift",
   "Astro",
+  "Go",
 ] as const;
 
 const blogPosts = await getCollection("blog");
@@ -29,9 +31,8 @@ const blogTags = new Set(
     </h2>
     <div class="text-body">
       <p>
-        Hi, I'm HAL. I am a university student based in Osaka, Japan, majoring in
-        Psychology. I have a passion for web development and creating useful
-        tools.
+        I am a university student based in Osaka, Japan, majoring in
+        Psychology.
       </p>
 
       <ul class="mt-4 flex list-none flex-wrap gap-3 pl-0 select-none">
@@ -39,16 +40,11 @@ const blogTags = new Set(
           tags.map((label) =>
             blogTags.has(slugifyTag(label)) ? (
               <li class="m-0 p-0">
-                <a
-                  href={"/tags/" + slugifyTag(label)}
-                  class="tag decoration-none"
-                >
-                  {label}
-                </a>
+                <Tag label={label} href={"/tags/" + slugifyTag(label)} icon="" />
               </li>
             ) : (
               <li class="m-0 p-0">
-                <span class="tag">{label}</span>
+                <Tag label={label} icon="" />
               </li>
             ),
           )

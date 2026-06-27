@@ -2,6 +2,7 @@
 import type { MarkdownHeading } from "astro";
 import type { CollectionEntry } from "astro:content";
 import ShareButtons from "../components/ShareButtons.astro";
+import Tag from "../components/Tag.astro";
 import TableOfContents from "../components/TableOfContents.astro";
 import { slugifyTag } from "../lib/tag";
 import Layout from "./Layout.astro";
@@ -37,7 +38,7 @@ const ogImage = heroImage || `/ogp/${slug}.png`;
   modifiedDate={updatedDate}
   tags={tags}
 >
-  <article class="container-article py-8" transition:name={`blog-card-${slug}`}>
+  <article class="container-article py-4 md:py-6" transition:name={`blog-card-${slug}`}>
     {
       heroImage && (
         <img
@@ -45,21 +46,21 @@ const ogImage = heroImage || `/ogp/${slug}.png`;
           height={510}
           src={heroImage}
           alt=""
-          class="border-dark shadow-card mb-8 rounded-xs border"
+          class="border-dark shadow-card mb-6 rounded-xs border md:mb-8"
         />
       )
     }
-    <div class="mb-8 flex flex-col justify-center gap-4 text-center">
+    <div class="mb-6 flex flex-col justify-center gap-3 text-center md:mb-8 md:gap-4">
       <h1 class="text-title" transition:name={`blog-title-${slug}`}>{title}</h1>
-      <div class="flex flex-wrap justify-center gap-4">
-        <div class="text-label before:content-empty before:i-lucide:calendar">
+      <div class="flex flex-wrap justify-center gap-3 md:gap-4">
+        <div class="inline-flex gap-1 items-center text-label before:content-empty before:i-lucide:calendar">
           <time datetime={pubDate.toISOString()}>
             {pubDate.toLocaleDateString("ja-JP")}
           </time>
         </div>
         {
           updatedDate && (
-            <div class="text-label before:content-empty before:i-lucide:refresh-cw">
+            <div class="inline-flex gap-1 items-center text-label before:content-empty before:i-lucide:refresh-cw">
               <span>Updated:</span>
               <time datetime={updatedDate.toISOString()}>
                 {updatedDate.toLocaleDateString("ja-JP")}
@@ -69,7 +70,7 @@ const ogImage = heroImage || `/ogp/${slug}.png`;
         }
         {
           readingTime && (
-            <div class="text-label before:content-empty before:i-lucide:clock">
+            <div class="inline-flex gap-1 items-center text-label before:content-empty before:i-lucide:clock">
               <span>{readingTime}</span>
             </div>
           )
@@ -77,21 +78,20 @@ const ogImage = heroImage || `/ogp/${slug}.png`;
       </div>
       {
         tags && tags.length > 0 && (
-          <ul class="flex flex-wrap justify-center gap-2">
+          <ul class="flex flex-wrap justify-center gap-1.5 md:gap-2">
             {tags.map((tag: string) => (
               <li>
-                <a
+                <Tag
+                  label={tag}
                   href={`/tags/${slugifyTag(tag)}`}
-                  class="tag tag-hover before:content-empty before:i-lucide:tag before:text-light"
-                >
-                  {tag}
-                </a>
+                  class="text-[0.68rem] md:text-xs"
+                />
               </li>
             ))}
           </ul>
         )
       }
-      <div class="mx-auto">
+      <div class="mx-auto mb-4">
         <ShareButtons path={Astro.url.pathname.toString()} title={title} />
       </div>
     </div>
@@ -102,7 +102,7 @@ const ogImage = heroImage || `/ogp/${slug}.png`;
       <div class="min-w-0">
         {
           headings && headings.length > 0 && (
-            <details class="bg-base border-base mb-8 rounded-xs border p-4 lg:hidden">
+            <details class="bg-base border-base mb-6 rounded-xs border p-3 text-sm lg:hidden">
               <summary class="no-marker before:content-empty before:i-lucide:list before:text-light flex cursor-pointer items-center select-none before:mr-2">
                 <span>目次</span>
               </summary>
@@ -110,7 +110,7 @@ const ogImage = heroImage || `/ogp/${slug}.png`;
             </details>
           )
         }
-        <div class="prose prose-lg prose-neutral dark:prose-invert max-w-none">
+        <div class="prose prose-sm prose-neutral dark:prose-invert md:prose-base max-w-none">
           <slot />
         </div>
       </div>
@@ -124,8 +124,14 @@ const ogImage = heroImage || `/ogp/${slug}.png`;
       }
     </div>
     {/* 記事フッター - シェアボタン */}
-    <div class="mt-12 flex justify-center">
+    <div class="mt-8 flex justify-center">
       <ShareButtons path={Astro.url.pathname.toString()} title={title} />
+    </div>
+    <div class="mt-8 flex justify-end">
+      <button
+        class="btn-ghost text-sm"
+        onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+      >^ top ^</button>
     </div>
     <script>
       interface WindowWithCodeCopy extends Window {

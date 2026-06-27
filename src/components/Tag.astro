@@ -1,0 +1,53 @@
+---
+interface Props {
+  label: string;
+  href?: string;
+  active?: boolean;
+  count?: number;
+  icon?: string;
+  class?: string;
+}
+
+const {
+  label,
+  href,
+  active = false,
+  count,
+  class: className = "",
+} = Astro.props;
+
+const baseClasses = [
+  "tag tag-hover",
+  `before:content-empty before:i-lucide:tag before:text-light`,
+  active ? "border-dark bg-primary text-secondary shadow-card-subtle" : "",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+{
+  href ? (
+    <a
+      href={href}
+      class={baseClasses}
+      aria-current={active ? "page" : undefined}
+    >
+      <span class="font-mono">{label}</span>
+      {count !== undefined && (
+        <span class="border-base text-muted font-mono ml-1 border-l pl-1.5 text-xs">
+          {count}
+        </span>
+      )}
+    </a>
+  ) : (
+    <span class={baseClasses}>
+      <span class="font-mono">{label}</span>
+      {count !== undefined && (
+        <span class="border-base text-muted font-mono ml-1 border-l pl-1.5 text-xs">
+          {count}
+        </span>
+      )}
+    </span>
+  )
+}
