@@ -2,6 +2,7 @@
 dist/
 .wrangler/
 result
+.cache/
 # generated types
 .astro/
 
