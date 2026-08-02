@@ -173,12 +173,12 @@ export const linkCardPlugin = defineHastPlugin({
       const image = ogp?.image ? resolveUrl(ogp.image, href) : "";
 
       const infoChildren: ElementContent[] = [
-        createElement("span", { className: "rlc-title" }, [createText(title)]),
+        createElement("span", { className: ["rlc-title"] }, [createText(title)]),
       ];
 
       if (description) {
         infoChildren.push(
-          createElement("span", { className: "rlc-description" }, [
+          createElement("span", { className: ["rlc-description"] }, [
             createText(description),
           ]),
         );
@@ -189,7 +189,7 @@ export const linkCardPlugin = defineHastPlugin({
         urlContainerChildren.push(
           createElement("img", {
             alt: `${title} favicon`,
-            className: "rlc-favicon",
+            className: ["rlc-favicon"],
             height: 16,
             src: favicon,
             width: 16,
@@ -197,7 +197,7 @@ export const linkCardPlugin = defineHastPlugin({
         );
       }
       urlContainerChildren.push(
-        createElement("span", { className: "rlc-url" }, [
+        createElement("span", { className: ["rlc-url"] }, [
           createText(displayUrl),
         ]),
       );
@@ -205,7 +205,7 @@ export const linkCardPlugin = defineHastPlugin({
       infoChildren.push(
         createElement(
           "span",
-          { className: "rlc-url-container" },
+          { className: ["rlc-url-container"] },
           urlContainerChildren,
         ),
       );
@@ -213,17 +213,17 @@ export const linkCardPlugin = defineHastPlugin({
       const cardChildren: ElementContent[] = [];
       if (image) {
         cardChildren.push(
-          createElement("span", { className: "rlc-image-container" }, [
+          createElement("span", { className: ["rlc-image-container"] }, [
             createElement("img", {
               alt: title,
-              className: "rlc-image",
+              className: ["rlc-image"],
               src: image,
             }),
           ]),
         );
       }
       cardChildren.push(
-        createElement("span", { className: "rlc-info" }, infoChildren),
+        createElement("span", { className: ["rlc-info"] }, infoChildren),
       );
 
       ctx.replaceNode(
@@ -231,7 +231,7 @@ export const linkCardPlugin = defineHastPlugin({
         createElement(
           "a",
           {
-            className: "rlc-container",
+            className: ["rlc-container"],
             href,
           },
           cardChildren,
