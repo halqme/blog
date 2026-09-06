@@ -173,7 +173,9 @@ export const linkCardPlugin = defineHastPlugin({
       const image = ogp?.image ? resolveUrl(ogp.image, href) : "";
 
       const infoChildren: ElementContent[] = [
-        createElement("span", { className: ["rlc-title"] }, [createText(title)]),
+        createElement("span", { className: ["rlc-title"] }, [
+          createText(title),
+        ]),
       ];
 
       if (description) {
